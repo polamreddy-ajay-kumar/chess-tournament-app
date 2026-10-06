@@ -1,51 +1,91 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-:root {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: rgba(255,255,255,0.92);
-  background: #2b100d;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+interface Props {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
 }
 
-html, body, #root {
-  margin: 0;
-  min-height: 100%;
-  min-height: 100vh;
+export function BottomNav({ activeTab, onTabChange }: Props) {
+  const tabs = [
+    { id: 'home', icon: '🏠', label: 'Home' },
+    { id: 'friends', icon: '👥', label: 'Friends', badge: 1 },
+    { id: 'equipment', icon: '♟', label: 'Equipment' },
+    { id: 'events', icon: '🎉', label: 'Events' },
+    { id: 'shop', icon: '🛒', label: 'Shop' },
+  ];
+
+  return (
+    <View style={styles.container}>
+      {tabs.map((tab) => (
+        <TouchableOpacity
+          key={tab.id}
+          onPress={() => onTabChange(tab.id)}
+          activeOpacity={0.9}
+          style={[styles.navItem, activeTab === tab.id && styles.activeNavItem]}
+        >
+          <Text style={styles.icon}>{tab.icon}</Text>
+          <Text style={styles.label}>{tab.label}</Text>
+
+          {tab.badge ? (
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>{tab.badge}</Text>
+            </View>
+          ) : null}
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
 }
 
-body {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: #1b0d0d;
-}
-
-button {
-  font: inherit;
-}
-
-.font-display {
-  font-family: 'Baloo 2', sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-button:focus-visible {
-  outline: 3px solid rgba(255,255,255,0.8);
-  outline-offset: 3px;
-}
-
-@media (min-width: 768px) {
-  body {
-    background: linear-gradient(180deg, #34140f 0%, #1e090c 100%);
-  }
-}
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    paddingVertical: 10,
+    backgroundColor: 'rgba(90, 40, 20, 0.7)',
+    borderTopWidth: 4,
+    borderTopColor: '#7d3618',
+  },
+  navItem: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 68,
+    borderRadius: 18,
+    position: 'relative',
+  },
+  activeNavItem: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+  },
+  icon: {
+    fontSize: 24,
+    color: '#f8d485',
+  },
+  label: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#fff5e6',
+    marginTop: 2,
+  },
+  badge: {
+    position: 'absolute',
+    top: 4,
+    right: 16,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#f7c551',
+    borderWidth: 2,
+    borderColor: '#f2e7aa',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badgeText: {
+    fontSize: 9,
+    fontWeight: '800',
+    color: '#fff',
+  },
+});

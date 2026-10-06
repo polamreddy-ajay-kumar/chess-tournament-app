@@ -1,0 +1,16 @@
+# Learn more https://docs.expo.dev/
+
+# Node
+node_modules/
+.expo/
+.expo-shared/
+
+# OS
+.DS_Store
+
+# Logs
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
