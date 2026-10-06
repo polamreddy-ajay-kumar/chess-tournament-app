@@ -1,0 +1,144 @@
+import React, { useMemo, useState } from 'react';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { BottomNav } from './components/BottomNav';
+import { PassBanner } from './components/PassBanner';
+import { TopBar } from './components/TopBar';
+import { TournamentCard } from './components/TournamentCard';
+
+const tournaments = [
+  {
+    id: 'delhi',
+    city: 'DELHI',
+    prize: '1 000',
+    players: 62,
+    entry: '500',
+    cp: 120,
+    cpBonus: 140,
+    rules: '10 min + 5 sec/move',
+    tone: 'violet',
+    accent: '#a95ae4',
+  },
+  {
+    id: 'new-york',
+    city: 'NEW YORK',
+    prize: '5 000',
+    players: 226,
+    entry: '2 600',
+    cp: 140,
+    cpBonus: 160,
+    rules: '10 min + 10 sec/move',
+    tone: 'pink',
+    accent: '#d474c9',
+  },
+  {
+    id: 'berlin',
+    city: 'BERLIN',
+    prize: '10 000',
+    players: 128,
+    entry: '5 500',
+    cp: 160,
+    cpBonus: 180,
+    rules: '10 min + 15 sec/move',
+    tone: 'red',
+    accent: '#d94a4a',
+  },
+  {
+    id: 'london',
+    city: 'LONDON',
+    prize: '20 000',
+    players: 138,
+    entry: '11 000',
+    cp: 180,
+    cpBonus: 200,
+    rules: '10 min + 5 sec/move',
+    tone: 'crimson',
+    accent: '#c44444',
+  },
+];
+
+export default function App() {
+  const [selectedId, setSelectedId] = useState('delhi');
+  const [activeTab, setActiveTab] = useState('home');
+
+  const selectedTournament = useMemo(
+    () => tournaments.find((item) => item.id === selectedId) ?? tournaments[0],
+    [selectedId],
+  );
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="light-content" backgroundColor="#2b100d" />
+      <View style={styles.container}>
+        <TopBar />
+        <PassBanner />
+
+        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+          <TournamentCard tournament={selectedTournament} />
+
+          <View style={styles.cityGrid}>
+            {tournaments.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                activeOpacity={0.9}
+                onPress={() => setSelectedId(item.id)}
+                style={[styles.cityButton, item.id === selectedId && styles.cityButtonSelected]}
+              >
+                <Text style={styles.cityBadge}>♛</Text>
+                <Text style={styles.cityLabel}>{item.city}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+
+        <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#2b100d',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#2c110d',
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 12,
+  },
+  cityGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 14,
+    marginBottom: 16,
+  },
+  cityButton: {
+    width: '23%',
+    height: 72,
+    borderRadius: 16,
+    backgroundColor: '#8d4d2d',
+    borderWidth: 3,
+    borderColor: '#d3803c',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  cityButtonSelected: {
+    backgroundColor: '#6c3013',
+    borderColor: '#f4c35d',
+  },
+  cityBadge: {
+    fontSize: 22,
+    color: '#f5d58d',
+  },
+  cityLabel: {
+    fontSize: 9,
+    fontWeight: '900',
+    color: '#fff6da',
+    marginTop: 4,
+    letterSpacing: 0.5,
+  },
+});
