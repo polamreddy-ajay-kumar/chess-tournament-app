@@ -1,125 +1,133 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export function TopBar() {
+export function PassBanner() {
   return (
     <View style={styles.container}>
-      <View style={styles.leftGroup}>
-        <View style={styles.chip}>
-          <Text style={styles.chipText}>15</Text>
+      <View style={styles.banner}>
+        <View style={styles.topRow}>
+          <View style={styles.shield}>
+            <Text style={styles.shieldText}>♛</Text>
+          </View>
+
+          <Text style={styles.title}>CHESS PASS</Text>
+
+          <View style={styles.timeWrap}>
+            <View style={styles.timePill}>
+              <Text style={styles.timeText}>◔ 25d 21h</Text>
+            </View>
+            <View style={styles.levelBadge}>
+              <Text style={styles.levelText}>4</Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.iconBox}>
-          <Text style={styles.iconText}>⚙</Text>
-        </View>
-        <View style={styles.iconBox}>
-          <Text style={styles.iconText}>▣</Text>
+
+        <View style={styles.progressRow}>
+          <View style={styles.progressBar}>
+            <View style={styles.progressFill} />
+          </View>
+          <Text style={styles.progressText}>0/35</Text>
         </View>
       </View>
-
-      <View style={styles.rightGroup}>
-        <StatPill type="gem" value="32" />
-        <StatPill type="plus" value="＋" />
-        <StatPill type="gold" value="4 800" />
-        <StatPill type="plus" value="＋" />
-      </View>
-    </View>
-  );
-}
-
-function StatPill({ type, value }: { type: 'gem' | 'plus' | 'gold'; value: string }) {
-  const styleMap = {
-    gem: styles.gem,
-    gold: styles.gold,
-    plus: styles.plus,
-  };
-
-  return (
-    <View style={[styles.pill, styleMap[type]]}>
-      <Text style={[styles.pillText, type === 'gold' || type === 'plus' ? styles.darkText : null]}>{value}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 12,
+    paddingTop: 16,
+  },
+  banner: {
+    borderRadius: 22,
+    borderWidth: 4,
+    borderColor: '#f3a83e',
+    backgroundColor: '#7b3ca3',
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+  topRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#d08742',
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-    borderBottomWidth: 4,
-    borderBottomColor: '#7d3d17',
   },
-  leftGroup: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  chip: {
-    width: 62,
+  shield: {
+    width: 34,
     height: 34,
-    borderRadius: 18,
-    backgroundColor: '#f8de9c',
-    borderWidth: 3,
-    borderColor: '#d89f36',
+    borderRadius: 10,
+    backgroundColor: '#f0f3fb',
+    borderWidth: 2,
+    borderColor: '#f1d5a5',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  chipText: {
+  shieldText: {
+    fontSize: 18,
+    color: '#4d5a78',
+  },
+  title: {
+    flex: 1,
     fontSize: 16,
-    fontWeight: '800',
-    color: '#4b250a',
+    fontWeight: '900',
+    color: '#fffaf1',
+    letterSpacing: 1,
+    marginLeft: 8,
   },
-  iconBox: {
-    width: 42,
-    height: 42,
-    borderRadius: 12,
-    backgroundColor: '#d6dcd6',
-    borderWidth: 3,
-    borderColor: '#7d7d7d',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  iconText: {
-    fontSize: 20,
-    color: '#303030',
-  },
-  rightGroup: {
+  timeWrap: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
-  pill: {
-    minWidth: 70,
-    height: 36,
-    borderRadius: 18,
-    borderWidth: 3,
+  timePill: {
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 2,
+    borderColor: '#f4d98d',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  timeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#fdf5d8',
+  },
+  levelBadge: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#f3b526',
+    borderWidth: 2,
+    borderColor: '#f7d268',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
   },
-  gem: {
-    backgroundColor: '#4bc0ff',
-    borderColor: '#2477f3',
-  },
-  gold: {
-    backgroundColor: '#ffd74d',
-    borderColor: '#f5b62d',
-  },
-  plus: {
-    width: 30,
-    minWidth: 30,
-    backgroundColor: '#ffdb7d',
-    borderColor: '#f9c050',
-    paddingHorizontal: 0,
-  },
-  pillText: {
-    fontSize: 14,
+  levelText: {
+    fontSize: 12,
     fontWeight: '900',
-    color: '#ffffff',
+    color: '#58350a',
   },
-  darkText: {
-    color: '#4b2908',
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12,
+    gap: 8,
+  },
+  progressBar: {
+    flex: 1,
+    height: 10,
+    backgroundColor: 'rgba(236,230,221,0.16)',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    width: '0%',
+    height: '100%',
+    backgroundColor: '#f7d768',
+    borderRadius: 8,
+  },
+  progressText: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#fff5de',
   },
 });

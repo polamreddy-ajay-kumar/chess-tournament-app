@@ -1,32 +1,53 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export function PassBanner() {
+export function TournamentCard({ tournament }: { tournament: any }) {
+  const backgroundColor =
+    tournament.tone === 'pink'
+      ? '#a95ae4'
+      : tournament.tone === 'red'
+        ? '#d94a4a'
+        : tournament.tone === 'crimson'
+          ? '#c44444'
+          : '#a95ae4';
+
   return (
-    <View style={styles.container}>
-      <View style={styles.banner}>
-        <View style={styles.topRow}>
-          <View style={styles.shield}>
-            <Text style={styles.shieldText}>♛</Text>
-          </View>
+    <View style={[styles.card, { backgroundColor }]}>
+      <View style={styles.headerWrap}>
+        <View style={styles.logoWrap}>
+          <Text style={styles.logoText}>♛</Text>
+        </View>
+        <View style={styles.cityWrap}>
+          <Text style={styles.cityText}>{tournament.city}</Text>
+        </View>
+      </View>
 
-          <Text style={styles.title}>CHESS PASS</Text>
+      <View style={styles.cpRow}>
+        <View style={styles.cpPill}>
+          <Text style={styles.cpText}>+{tournament.cp} CP</Text>
+        </View>
+        <View style={styles.cpPill}>
+          <Text style={styles.cpText}>+{tournament.cpBonus}</Text>
+        </View>
+      </View>
 
-          <View style={styles.timeWrap}>
-            <View style={styles.timePill}>
-              <Text style={styles.timeText}>◔ 25d 21h</Text>
-            </View>
-            <View style={styles.levelBadge}>
-              <Text style={styles.levelText}>4</Text>
-            </View>
-          </View>
+      <View style={styles.infoPanel}>
+        <View style={styles.prizeRow}>
+          <Text style={styles.prizeText}>Prize: {tournament.prize}</Text>
+          <View style={styles.coinBadge}><Text style={styles.coinText}>◉</Text></View>
         </View>
 
-        <View style={styles.progressRow}>
-          <View style={styles.progressBar}>
-            <View style={styles.progressFill} />
-          </View>
-          <Text style={styles.progressText}>0/35</Text>
+        <View style={styles.infoBox}>
+          <Text style={styles.infoText}>Players online: {tournament.players} ◔</Text>
+        </View>
+
+        <View style={styles.infoBox}>
+          <Text style={styles.infoText}>Entry fee: {tournament.entry} ◉</Text>
+        </View>
+
+        <View style={styles.infoBoxRow}>
+          <Text style={styles.infoText}>Rules: {tournament.rules}</Text>
+          <View style={styles.helpPill}><Text style={styles.helpText}>i</Text></View>
         </View>
       </View>
     </View>
@@ -34,100 +55,147 @@ export function PassBanner() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 12,
-    paddingTop: 16,
-  },
-  banner: {
-    borderRadius: 20,
+  card: {
+    borderRadius: 22,
     borderWidth: 4,
-    borderColor: '#f3a83e',
-    backgroundColor: '#983a6d',
+    borderColor: '#d18137',
     paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingVertical: 14,
+    marginTop: 14,
   },
-  topRow: {
+  headerWrap: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  logoWrap: {
+    width: 70,
+    height: 70,
+    borderRadius: 18,
+    borderWidth: 4,
+    borderColor: '#efb32a',
+    backgroundColor: '#f4d366',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoText: {
+    fontSize: 32,
+    color: '#4d5a78',
+  },
+  cityWrap: {
+    marginTop: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 18,
+    borderWidth: 4,
+    borderColor: '#efb32a',
+    backgroundColor: '#f4d366',
+  },
+  cityText: {
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#f7d20d',
+    textAlign: 'center',
+    letterSpacing: 1,
+  },
+  cpRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+    marginBottom: 18,
+  },
+  cpPill: {
+    flex: 1,
+    paddingVertical: 8,
+    backgroundColor: '#f29f1f',
+    borderRadius: 12,
+    borderWidth: 3,
+    borderColor: '#f9d76a',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 4,
+  },
+  cpText: {
+    fontSize: 14,
+    fontWeight: '900',
+    color: '#4d2908',
+  },
+  infoPanel: {
+    backgroundColor: 'rgba(57, 49, 88, 0.18)',
+    borderRadius: 18,
+    borderWidth: 3,
+    borderColor: '#f7d36b',
+    padding: 12,
+  },
+  prizeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#ae7135',
+    borderRadius: 16,
+    borderWidth: 3,
+    borderColor: '#d8c27a',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+  },
+  prizeText: {
+    fontSize: 20,
+    fontWeight: '900',
+    color: '#fff7ec',
+  },
+  coinBadge: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#f2ae24',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#f4d169',
+  },
+  coinText: {
+    fontSize: 12,
+    color: '#fff',
+  },
+  infoBox: {
+    marginTop: 12,
+    borderRadius: 16,
+    borderWidth: 3,
+    borderColor: '#d9d4ba',
+    backgroundColor: '#0a428f',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+  },
+  infoText: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#f8f8ff',
+    textAlign: 'center',
+  },
+  infoBoxRow: {
+    marginTop: 12,
+    borderRadius: 16,
+    borderWidth: 3,
+    borderColor: '#d9d4ba',
+    backgroundColor: '#0c478f',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  shield: {
-    width: 34,
-    height: 34,
-    borderRadius: 10,
-    backgroundColor: '#f0f3fb',
-    borderWidth: 2,
-    borderColor: '#f1d5a5',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  shieldText: {
-    fontSize: 18,
-    color: '#4d5a78',
-  },
-  title: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: '900',
-    color: '#fffaf1',
-    letterSpacing: 1,
-    marginLeft: 8,
-  },
-  timeWrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  timePill: {
-    borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderWidth: 2,
-    borderColor: '#f4d98d',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-  },
-  timeText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#fdf5d8',
-  },
-  levelBadge: {
+  helpPill: {
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#f3b526',
+    backgroundColor: '#0f9ce4',
     borderWidth: 2,
-    borderColor: '#f7d268',
+    borderColor: '#7ab7ff',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  levelText: {
+  helpText: {
     fontSize: 12,
     fontWeight: '900',
-    color: '#58350a',
-  },
-  progressRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 12,
-    gap: 8,
-  },
-  progressBar: {
-    flex: 1,
-    height: 10,
-    backgroundColor: 'rgba(236,230,221,0.16)',
-    borderRadius: 8,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    width: '0%',
-    height: '100%',
-    backgroundColor: '#f7d768',
-    borderRadius: 8,
-  },
-  progressText: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: '#fff5de',
+    color: '#fff',
   },
 });
