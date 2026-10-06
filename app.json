@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Chess Tournament",
+    "slug": "chess-tournament-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.chessarena.tournament"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.chessarena.tournament"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

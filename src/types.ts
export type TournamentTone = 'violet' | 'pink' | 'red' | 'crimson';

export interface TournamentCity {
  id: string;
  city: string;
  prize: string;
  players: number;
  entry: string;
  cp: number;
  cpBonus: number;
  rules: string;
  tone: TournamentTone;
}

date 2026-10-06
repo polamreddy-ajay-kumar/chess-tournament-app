@@ -1,12 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-interface Props {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-}
-
-export function BottomNav({ activeTab, onTabChange }: Props) {
+export function BottomNav({ activeTab, onTabChange }) {
   const tabs = [
     { id: 'home', icon: '🏠', label: 'Home' },
     { id: 'friends', icon: '👥', label: 'Friends', badge: 1 },
@@ -20,18 +15,13 @@ export function BottomNav({ activeTab, onTabChange }: Props) {
       {tabs.map((tab) => (
         <TouchableOpacity
           key={tab.id}
-          onPress={() => onTabChange(tab.id)}
           activeOpacity={0.9}
+          onPress={() => onTabChange(tab.id)}
           style={[styles.navItem, activeTab === tab.id && styles.activeNavItem]}
         >
           <Text style={styles.icon}>{tab.icon}</Text>
           <Text style={styles.label}>{tab.label}</Text>
-
-          {tab.badge ? (
-            <View style={styles.badge}>
-              <Text style={styles.badgeText}>{tab.badge}</Text>
-            </View>
-          ) : null}
+          {tab.badge ? <View style={styles.badge}><Text style={styles.badgeText}>{tab.badge}</Text></View> : null}
         </TouchableOpacity>
       ))}
     </View>
