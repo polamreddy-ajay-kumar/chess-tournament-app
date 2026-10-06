@@ -1,0 +1,187 @@
+export function TopBar() {
+  return (
+    <header className="relative overflow-hidden border-b-4 border-[#7d3d17] bg-[linear-gradient(180deg,_#d08742_0%,_#c56d2d_12%,_#8d4923_100%)] shadow-[inset_0_-5px_0_rgba(77,34,8,0.7)]">
+      <div className="flex items-center justify-between gap-3 px-4 py-3">
+        <div className="flex items-center gap-3">
+          <div className="relative flex h-[52px] w-[70px] items-center justify-center rounded-[18px] border-2 border-[#f6c873] bg-[linear-gradient(180deg,#d59a52,#b96e2f)] shadow-[inset_0_-5px_0_rgba(97,56,19,0.45),0_4px_0_rgba(65,28,6,0.4)]">
+            <div className="absolute inset-x-2 bottom-2 h-2 rounded-full bg-[#6d3d17]/40 blur-sm" />
+            <div className="relative h-8 w-8 rounded-full border-[3px] border-[#ecb95a] bg-[radial-gradient(circle_at_center,_#f0f0f0_0%,_#d7d7d7_56%,_#b0b0b0_100%)] shadow-[0_0_0_4px_rgba(90,47,20,0.35)]" />
+          </div>
+
+          <div className="flex h-[44px] w-[54px] items-center justify-center rounded-xl border-[3px] border-[#d1d1d1] bg-[linear-gradient(180deg,#eef0ec,#a9a9a9)] shadow-[inset_0_-4px_0_rgba(55,50,52,0.2),0_4px_0_rgba(43,32,30,0.45)] text-2xl text-[#303030]">
+            ▣
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <ResourceBadge type="gem" value="32" />
+          <ResourceBadge type="plus" value="＋" />
+          <ResourceBadge type="gold" value="4 800" />
+          <ResourceBadge type="plus" value="＋" />
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function ResourceBadge({ type, value }) {
+  const styles = {
+    gem: 'bg-[linear-gradient(180deg,#4cc0ff_0%,#2477f3_100%)] border-[#d8ebff]',
+    gold: 'bg-[linear-gradient(180deg,#ffe28a_0%,#f5b62d_100%)] text-[#4f3009] border-[#ffd86f]',
+    plus: 'bg-[linear-gradient(180deg,#ffdd7a_0%,#f9c050_100%)] text-[#4b2908] border-[#f8d770]',
+  };
+
+  return (
+    <div
+      className={`flex h-[42px] min-w-[74px] items-center justify-center rounded-full border-[3px] px-3 font-black text-base shadow-[inset_0_-5px_0_rgba(0,0,0,0.12),0_4px_0_rgba(50,20,8,0.3)] ${styles[type]}`}
+    >
+      {value}
+    </div>
+  );
+}
+
+export function PassBanner() {
+  return (
+    <div className="px-3 pt-4">
+      <div className="relative overflow-hidden rounded-[22px] border-[4px] border-[#f3a83e] bg-[linear-gradient(180deg,_#d86f2e_0%,_#a4381d_100%)] shadow-[0_10px_0_rgba(51,21,10,0.75)]">
+        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.22),_transparent_55%)]" />
+        <div className="relative flex items-center justify-between gap-3 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-xl border-2 border-[#f1d5a5] bg-[linear-gradient(180deg,#f0f3fb,#b4bed4)] text-[#4d5a78] shadow-[inset_0_-3px_0_rgba(44,47,74,0.25)]">
+              <span className="text-xl">♛</span>
+            </div>
+            <div className="font-display text-[1.1rem] font-black tracking-[0.12em] text-[#fffaf1]">CHESS PASS</div>
+          </div>
+
+          <div className="flex items-center gap-3 text-[#fdf5d8]">
+            <div className="flex items-center gap-2 rounded-full border-2 border-[#f4d98d] bg-[rgba(255,255,255,0.08)] px-2 py-1 text-[0.7rem] font-bold">
+              <span>◔</span>
+              <span>25d 21h</span>
+            </div>
+            <div className="flex items-center justify-center rounded-full border-2 border-[#f7d268] bg-[linear-gradient(180deg,#f6d279,#f3b526)] px-2.5 py-1 text-sm font-black text-[#58350a]">
+              4
+            </div>
+          </div>
+        </div>
+
+        <div className="relative px-4 pb-4">
+          <div className="flex items-center gap-2">
+            <div className="h-2 flex-1 rounded-full bg-[rgba(236,230,221,0.16)]">
+              <div className="h-full w-[0%] rounded-full bg-[linear-gradient(90deg,#fff4c1,#f7d768)]" />
+            </div>
+            <div className="text-[0.7rem] font-black uppercase tracking-[0.08em] text-[#fff5de]">0/35</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function TournamentCard({ tournament, onSelect, isActive }) {
+  const buildingStyles = {
+    delhi: 'bg-[radial-gradient(circle_at_top,_rgba(242,132,119,0.4),_transparent_34%)]',
+    newyork: 'bg-[radial-gradient(circle_at_top,_rgba(255,200,120,0.32),_transparent_36%)]',
+    berlin: 'bg-[radial-gradient(circle_at_top,_rgba(255,130,96,0.42),_transparent_32%)]',
+    london: 'bg-[radial-gradient(circle_at_top,_rgba(255,216,128,0.28),_transparent_38%)]',
+  };
+
+  const panelStyles = {
+    violet: 'bg-[linear-gradient(180deg,#a95ae4,#6d3ccf)] border-[#d18137]',
+    pink: 'bg-[linear-gradient(180deg,#ff819a,#8e49f0)] border-[#d18137]',
+    red: 'bg-[linear-gradient(180deg,#ff5d5d,#be2c2c)] border-[#d18137]',
+    crimson: 'bg-[linear-gradient(180deg,#e84a4a,#8f2a2a)] border-[#d18137]',
+  };
+
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[22px] border-[4px] p-0 shadow-[0_10px_0_rgba(59,19,6,0.75)] ${panelStyles[tournament.tone]}`}
+      onClick={onSelect}
+    >
+      <div className={`absolute inset-x-0 top-0 h-32 ${buildingStyles[tournament.building]}`} />
+
+      <div className="relative z-10 px-3 pb-4 pt-2">
+        <div className="relative mx-auto mt-3 flex w-full max-w-[320px] items-center justify-center">
+          <div className="absolute inset-x-2 top-6 h-4 rounded-full bg-[#f7cf6a]/80 blur-xl" />
+          <div className="relative mx-auto w-full rounded-[18px] border-[4px] border-[#efb32a] bg-[linear-gradient(180deg,#d7b24d,#f4d366)] px-5 py-4 shadow-[inset_0_-8px_0_rgba(122,71,11,0.3),0_10px_0_rgba(46,25,13,0.35)]">
+            <div className="flex justify-center">
+              <div className="relative flex h-16 w-24 items-center justify-center rounded-[18px] border-4 border-[#edb941] bg-[linear-gradient(180deg,#f8d46a,#d69b28)] shadow-[inset_0_-8px_0_rgba(120,71,10,0.25)]">
+                <div className="absolute -top-6 h-5 w-20 rounded-full bg-[#ffb366] blur-md" />
+                <span className="text-4xl">♛</span>
+              </div>
+            </div>
+            <div className="relative mt-3 text-center font-display text-[3.1rem] font-black leading-none tracking-[0.04em] text-[#f7d20d]" style={{ WebkitTextStroke: '3px rgba(50,20,5,0.8)' }}>
+              {tournament.city}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between px-2 text-xl font-black">
+          <div className="rounded-[12px] border-[3px] border-[#f9d76a] bg-[linear-gradient(180deg,#f7c452,#f29f1f)] px-4 py-1 text-[#4d2908] shadow-[0_4px_0_rgba(93,49,10,0.55)]">
+            +{tournament.cp} CP
+          </div>
+          <div className="rounded-[12px] border-[3px] border-[#f9d76a] bg-[linear-gradient(180deg,#f7c452,#f29f1f)] px-4 py-1 text-[#4d2908] shadow-[0_4px_0_rgba(93,49,10,0.55)]">
+            +{tournament.cpBonus}
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-[18px] border-[3px] border-[#f7d36b] bg-[rgba(57,49,88,0.18)] p-3 shadow-[inset_0_-6px_0_rgba(0,0,0,0.12)]">
+          <div className="flex items-center justify-center gap-3 rounded-[16px] border-[3px] border-[#d8c27a] bg-[linear-gradient(180deg,#c89e54,#ae7135)] px-3 py-4 text-3xl font-black text-[#f4ecff] shadow-[0_5px_0_rgba(74,35,10,0.45)]">
+            <span>Prize: {tournament.prize}</span>
+            <div className="ml-2 flex h-9 w-9 items-center justify-center rounded-full border-[3px] border-[#f4d169] bg-[linear-gradient(180deg,#f5d972,#f2ae24)] text-sm shadow-[0_3px_0_rgba(84,52,11,0.5)]">
+              ◉
+            </div>
+          </div>
+
+          <div className="mt-3 rounded-[16px] border-[3px] border-[#d9d4ba] bg-[linear-gradient(180deg,#205aa9,#0a428f)] px-4 py-4 text-center font-display text-[2.1rem] font-black text-[#f8f8ff] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)]">
+            Players online: {tournament.players}
+            <span className="ml-2 text-2xl align-middle">◔</span>
+          </div>
+
+          <div className="mt-3 rounded-[16px] border-[3px] border-[#d9d4ba] bg-[linear-gradient(180deg,#1f5ca2,#0b4a9a)] px-4 py-4 text-center font-display text-[2.1rem] font-black text-[#f8f8ff] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)]">
+            Entry fee: {tournament.entry}
+            <span className="ml-2 text-[1.1rem] text-[#f6ca44]">◉</span>
+          </div>
+
+          <div className="mt-3 flex items-center justify-between rounded-[16px] border-[3px] border-[#d9d4ba] bg-[linear-gradient(180deg,#1d5a9d,#0c478f)] px-4 py-4 text-[1.7rem] font-black text-[#f9f9ff] shadow-[inset_0_-6px_0_rgba(0,0,0,0.18)]">
+            <span>{tournament.rules}</span>
+            <div className="ml-3 flex h-9 w-9 items-center justify-center rounded-full border-[3px] border-[#7ab7ff] bg-[linear-gradient(180deg,#5fcbff,#0f9ce4)] text-base font-black text-white shadow-[0_4px_0_rgba(10,72,110,0.5)]">
+              i
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BottomNav() {
+  const items = [
+    { label: 'Home', icon: '🏠', active: true },
+    { label: 'Friends', icon: '👥', badge: 1 },
+    { label: 'Equipment', icon: '♟' },
+    { label: 'Events', icon: '🎉' },
+    { label: 'Shop', icon: '🛒' },
+  ];
+
+  return (
+    <div className="mt-6 flex items-end justify-between gap-2 border-t-4 border-[#7d3618] bg-[linear-gradient(180deg,_rgba(144,62,24,0.5),_rgba(58,18,12,0.85))] px-2 pb-5 pt-4">
+      {items.map((item) => (
+        <button
+          key={item.label}
+          type="button"
+          className={`relative flex h-[72px] w-[20%] flex-col items-center justify-center rounded-[18px] border-2 border-transparent text-[#f8d485] transition-all ${
+            item.active ? 'bg-[rgba(255,255,255,0.08)]' : 'bg-transparent'
+          }`}
+        >
+          <div className="text-[1.8rem] leading-none">{item.icon}</div>
+          <div className="mt-1 text-[0.78rem] font-bold text-[#fff5e6]">{item.label}</div>
+          {item.badge && (
+            <div className="absolute right-3 top-2 flex h-6 min-w-6 items-center justify-center rounded-full border-[3px] border-[#f2e7aa] bg-[linear-gradient(180deg,#f7c551,#ef9f26)] px-1 text-[0.68rem] font-black text-white">
+              {item.badge}
+            </div>
+          )}
+        </button>
+      ))}
+    </div>
+  );
+}
