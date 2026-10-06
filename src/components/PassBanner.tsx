@@ -1,133 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
 export function PassBanner() {
   return (
-    <View style={styles.container}>
-      <View style={styles.banner}>
-        <View style={styles.topRow}>
-          <View style={styles.shield}>
-            <Text style={styles.shieldText}>♛</Text>
-          </View>
+    <div className="px-3 pt-4">
+      <div className="relative overflow-hidden rounded-[22px] border-[4px] border-[#f3a83e] bg-[linear-gradient(180deg,_#d86f2e_0%,_#a4381d_100%)] shadow-[0_10px_0_rgba(51,21,10,0.75)]">
+        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.22),_transparent_55%)]" />
+        <div className="relative flex items-center justify-between gap-3 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-xl border-2 border-[#f1d5a5] bg-[linear-gradient(180deg,#f0f3fb,#b4bed4)] text-[#4d5a78] shadow-[inset_0_-3px_0_rgba(44,47,74,0.25)]">
+              <span className="text-xl">♛</span>
+            </div>
+            <div className="font-display text-[1.1rem] font-black tracking-[0.12em] text-[#fffaf1]">CHESS PASS</div>
+          </div>
 
-          <Text style={styles.title}>CHESS PASS</Text>
+          <div className="flex items-center gap-3 text-[#fdf5d8]">
+            <div className="flex items-center gap-2 rounded-full border-2 border-[#f4d98d] bg-[rgba(255,255,255,0.08)] px-2 py-1 text-[0.7rem] font-bold">
+              <span>◔</span>
+              <span>25d 21h</span>
+            </div>
+            <div className="flex items-center justify-center rounded-full border-2 border-[#f7d268] bg-[linear-gradient(180deg,#f6d279,#f3b526)] px-2.5 py-1 text-sm font-black text-[#58350a]">
+              4
+            </div>
+          </div>
+        </div>
 
-          <View style={styles.timeWrap}>
-            <View style={styles.timePill}>
-              <Text style={styles.timeText}>◔ 25d 21h</Text>
-            </View>
-            <View style={styles.levelBadge}>
-              <Text style={styles.levelText}>4</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.progressRow}>
-          <View style={styles.progressBar}>
-            <View style={styles.progressFill} />
-          </View>
-          <Text style={styles.progressText}>0/35</Text>
-        </View>
-      </View>
-    </View>
+        <div className="relative px-4 pb-4">
+          <div className="flex items-center gap-2">
+            <div className="h-2 flex-1 rounded-full bg-[rgba(236,230,221,0.16)]">
+              <div className="h-full w-[0%] rounded-full bg-[linear-gradient(90deg,#fff4c1,#f7d768)]" />
+            </div>
+            <div className="text-[0.7rem] font-black uppercase tracking-[0.08em] text-[#fff5de]">0/35</div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 12,
-    paddingTop: 16,
-  },
-  banner: {
-    borderRadius: 22,
-    borderWidth: 4,
-    borderColor: '#f3a83e',
-    backgroundColor: '#7b3ca3',
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-  },
-  topRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  shield: {
-    width: 34,
-    height: 34,
-    borderRadius: 10,
-    backgroundColor: '#f0f3fb',
-    borderWidth: 2,
-    borderColor: '#f1d5a5',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  shieldText: {
-    fontSize: 18,
-    color: '#4d5a78',
-  },
-  title: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: '900',
-    color: '#fffaf1',
-    letterSpacing: 1,
-    marginLeft: 8,
-  },
-  timeWrap: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  timePill: {
-    borderRadius: 12,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderWidth: 2,
-    borderColor: '#f4d98d',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-  },
-  timeText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#fdf5d8',
-  },
-  levelBadge: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: '#f3b526',
-    borderWidth: 2,
-    borderColor: '#f7d268',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  levelText: {
-    fontSize: 12,
-    fontWeight: '900',
-    color: '#58350a',
-  },
-  progressRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 12,
-    gap: 8,
-  },
-  progressBar: {
-    flex: 1,
-    height: 10,
-    backgroundColor: 'rgba(236,230,221,0.16)',
-    borderRadius: 8,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    width: '0%',
-    height: '100%',
-    backgroundColor: '#f7d768',
-    borderRadius: 8,
-  },
-  progressText: {
-    fontSize: 10,
-    fontWeight: '800',
-    color: '#fff5de',
-  },
-});

@@ -1,91 +1,78 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+# A4MP CHESS
 
-interface Props {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-}
+A fully functional chess tournament platform with a modern, mobile-first UI.
 
-export function BottomNav({ activeTab, onTabChange }: Props) {
-  const tabs = [
-    { id: 'home', icon: '🏠', label: 'Home' },
-    { id: 'friends', icon: '👥', label: 'Friends', badge: 1 },
-    { id: 'equipment', icon: '♟', label: 'Equipment' },
-    { id: 'events', icon: '🎉', label: 'Events' },
-    { id: 'shop', icon: '🛒', label: 'Shop' },
-  ];
+## Features
 
-  return (
-    <View style={styles.container}>
-      {tabs.map((tab) => (
-        <TouchableOpacity
-          key={tab.id}
-          onPress={() => onTabChange(tab.id)}
-          activeOpacity={0.9}
-          style={[styles.navItem, activeTab === tab.id && styles.activeNavItem]}
-        >
-          <Text style={styles.icon}>{tab.icon}</Text>
-          <Text style={styles.label}>{tab.label}</Text>
+- **Tournament Lobby**: Browse and join multiple chess tournaments (Delhi, New York, Berlin, London)
+- **Playable Chess Board**: Full 8x8 chess board with piece movement
+- **Chess Rules Implementation**:
+  - Legal piece movement
+  - Turn management
+  - Check detection
+  - Checkmate detection
+  - Stalemate detection
+  - Castling
+  - En passant
+  - Pawn promotion
+  - Move history tracking
 
-          {tab.badge ? (
-            <View style={styles.badge}>
-              <Text style={styles.badgeText}>{tab.badge}</Text>
-            </View>
-          ) : null}
-        </TouchableOpacity>
-      ))}
-    </View>
-  );
-}
+- **Game Controls**:
+  - Undo moves
+  - New Game
+  - Draw offer
+  - Move notation display
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 8,
-    paddingVertical: 10,
-    backgroundColor: 'rgba(90, 40, 20, 0.7)',
-    borderTopWidth: 4,
-    borderTopColor: '#7d3618',
-  },
-  navItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 68,
-    borderRadius: 18,
-    position: 'relative',
-  },
-  activeNavItem: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
-  },
-  icon: {
-    fontSize: 24,
-    color: '#f8d485',
-  },
-  label: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#fff5e6',
-    marginTop: 2,
-  },
-  badge: {
-    position: 'absolute',
-    top: 4,
-    right: 16,
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: '#f7c551',
-    borderWidth: 2,
-    borderColor: '#f2e7aa',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  badgeText: {
-    fontSize: 9,
-    fontWeight: '800',
-    color: '#fff',
-  },
-});
+- **Responsive Design**:
+  - Mobile-first layout
+  - Desktop support
+  - Touch-friendly interface
+
+## Installation
+
+```bash
+npm install
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+The app will open at http://localhost:3000
+
+## Build
+
+```bash
+npm run build
+```
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- chess.js (for chess logic)
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── TopBar.tsx
+│   ├── PassBanner.tsx
+│   ├── TournamentCard.tsx
+│   ├── BottomNav.tsx
+│   └── ChessBoard.tsx
+├── screens/            # Full-page screens
+│   ├── TournamentLobby.tsx
+│   └── ChessGame.tsx
+├── App.tsx            # Main app component
+└── main.tsx           # Entry point
+```
+
+## License
+
+MIT

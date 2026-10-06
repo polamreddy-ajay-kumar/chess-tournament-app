@@ -1,81 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export function BottomNav({ activeTab, onTabChange }: { activeTab: string; onTabChange: (tab: string) => void }) {
-  const tabs = [
-    { id: 'home', icon: '🏠', label: 'Home' },
-    { id: 'friends', icon: '👥', label: 'Friends', badge: 1 },
-    { id: 'equipment', icon: '♟', label: 'Equipment' },
-    { id: 'events', icon: '🎉', label: 'Events' },
-    { id: 'shop', icon: '🛒', label: 'Shop' },
+interface Props {
+  activeTab: string;
+  onTabChange: (tab: string) => void;
+}
+
+export function BottomNav({ activeTab, onTabChange }: Props) {
+  const items = [
+    { label: 'Home', icon: '🏠', id: 'home', active: true },
+    { label: 'Friends', icon: '👥', id: 'friends', badge: 1 },
+    { label: 'Equipment', icon: '♟', id: 'equipment' },
+    { label: 'Events', icon: '🎉', id: 'events' },
+    { label: 'Shop', icon: '🛒', id: 'shop' },
   ];
 
   return (
-    <View style={styles.container}>
-      {tabs.map((tab) => (
-        <TouchableOpacity
-          key={tab.id}
-          activeOpacity={0.9}
-          onPress={() => onTabChange(tab.id)}
-          style={[styles.navItem, activeTab === tab.id && styles.activeNavItem]}
+    <div className="mt-6 flex items-end justify-between gap-2 border-t-4 border-[#7d3618] bg-[linear-gradient(180deg,_rgba(144,62,24,0.5),_rgba(58,18,12,0.85))] px-2 pb-5 pt-4">
+      {items.map((item) => (
+        <button
+          key={item.id}
+          onClick={() => onTabChange(item.id)}
+          type="button"
+          className={`relative flex h-[72px] w-[20%] flex-col items-center justify-center rounded-[18px] border-2 border-transparent text-[#f8d485] transition-all ${
+            activeTab === item.id ? 'bg-[rgba(255,255,255,0.08)]' : 'bg-transparent'
+          }`}
         >
-          <Text style={styles.icon}>{tab.icon}</Text>
-          <Text style={styles.label}>{tab.label}</Text>
-          {tab.badge ? <View style={styles.badge}><Text style={styles.badgeText}>{tab.badge}</Text></View> : null}
-        </TouchableOpacity>
+          <div className="text-[1.8rem] leading-none">{item.icon}</div>
+          <div className="mt-1 text-[0.78rem] font-bold text-[#fff5e6]">{item.label}</div>
+          {item.badge && (
+            <div className="absolute right-3 top-2 flex h-6 min-w-6 items-center justify-center rounded-full border-[3px] border-[#f2e7aa] bg-[linear-gradient(180deg,#f7c551,#ef9f26)] px-1 text-[0.68rem] font-black text-white">
+              {item.badge}
+            </div>
+          )}
+        </button>
       ))}
-    </View>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 8,
-    paddingVertical: 10,
-    backgroundColor: 'rgba(90, 40, 20, 0.7)',
-    borderTopWidth: 4,
-    borderTopColor: '#7d3618',
-  },
-  navItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 68,
-    borderRadius: 18,
-    position: 'relative',
-  },
-  activeNavItem: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
-  },
-  icon: {
-    fontSize: 24,
-    color: '#f8d485',
-  },
-  label: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: '#fff5e6',
-    marginTop: 2,
-  },
-  badge: {
-    position: 'absolute',
-    top: 4,
-    right: 16,
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: '#f7c551',
-    borderWidth: 2,
-    borderColor: '#f2e7aa',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  badgeText: {
-    fontSize: 9,
-    fontWeight: '800',
-    color: '#fff',
-  },
-});

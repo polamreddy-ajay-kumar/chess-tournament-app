@@ -1,0 +1,8 @@
+{
+  "name": "a4mp-chess",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A fully functional chess tournament platform",
+  "keywords": ["chess", "tournament", "game", "react"],
+  "license": "MIT"
+}
